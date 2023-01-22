@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import {
   Navbar,
@@ -11,6 +12,9 @@ import {
   DropdownMenu,
 } from "reactstrap";
 
+import avatar from "../../../media/images/avatar.png";
+import logo from "../../../media/images/logo.png";
+
 import "./Header.css";
 
 const cookies = new Cookies();
@@ -21,7 +25,7 @@ class Header extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      logged: cookies.get("userToken"),
+      logged: cookies.get("access"),
     };
   }
 
@@ -30,7 +34,7 @@ class Header extends Component {
   };
 
   onCookieChange = () => {
-    this.setState({ logged: cookies.get("userToken") });
+    this.setState({ logged: cookies.get("access") });
   };
 
   toggle = () => {
@@ -40,11 +44,11 @@ class Header extends Component {
   };
 
   logIn = () => {
-    cookies.set("userToken", "Pacman", { path: "/" });
+    this.props.navigation("/login");
   };
 
   logOut = () => {
-    cookies.remove("userToken");
+    cookies.remove("access");
   };
 
   renderProfileButton = () =>
@@ -56,7 +60,7 @@ class Header extends Component {
       <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <img
           className="header__image img-fluid rounded-circle mr-2"
-          src="https://www.kindpng.com/picc/m/404-4042814_facebook-no-profile-png-download-default-headshot-transparent.png"
+          src={avatar}
         />
         <DropdownToggle caret className="header__dropdown-toggle">
           Przemysław Sałek
@@ -75,11 +79,7 @@ class Header extends Component {
         <Navbar className="header__navbar">
           <Container className="header__containter">
             <NavbarBrand className="header__navbar-brand" href="/">
-              <img
-                className="header__logo"
-                alt=""
-                src="https://privacyaustralia.net/wp-content/uploads/2020/03/incognito-mode.png"
-              />
+              <img className="header__logo" alt="" src={logo} />
               <div>Wallpapers</div>
             </NavbarBrand>
             {this.renderProfileButton()}
@@ -90,4 +90,8 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default function (props) {
+  const navigation = useNavigate();
+
+  return <Header {...props} navigation={navigation} />;
+}
