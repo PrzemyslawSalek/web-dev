@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
 import {
   Navbar,
   NavLink,
@@ -12,12 +11,13 @@ import {
   DropdownMenu,
 } from "reactstrap";
 
+import { getCookies } from "../../../utils/cookies";
+
 import avatar from "../../../media/images/avatar.png";
 import logo from "../../../media/images/logo.png";
 
 import "./Header.css";
 
-const cookies = new Cookies();
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -25,16 +25,16 @@ class Header extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      logged: cookies.get("access"),
+      logged: getCookies().get("access"),
     };
   }
 
   componentDidMount = () => {
-    cookies.addChangeListener(this.onCookieChange);
+    getCookies().addChangeListener(this.onCookieChange);
   };
 
   onCookieChange = () => {
-    this.setState({ logged: cookies.get("access") });
+    this.setState({ logged: getCookies().get("access") });
   };
 
   toggle = () => {
@@ -48,7 +48,8 @@ class Header extends Component {
   };
 
   logOut = () => {
-    cookies.remove("access");
+    getCookies().remove("access");
+    getCookies().remove("refresh");
   };
 
   renderProfileButton = () =>
@@ -67,7 +68,6 @@ class Header extends Component {
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem>Profil</DropdownItem>
-          <DropdownItem>Twoje zamówienia</DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={this.logOut}>Wyloguj</DropdownItem>
         </DropdownMenu>

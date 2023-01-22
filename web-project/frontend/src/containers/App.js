@@ -12,8 +12,17 @@ const setPage = (path, main) => (
 export default function () {
   return (
     <Router>
-      <Routes>{setPage("/", ToDo)}</Routes>
-      <Routes>{setPage("/login", BoxAuth)}</Routes>
+      <Routes>
+        <Route path="/" element={<CustomPage mainPage={ToDo} />} />
+        <Route
+          path="/todo"
+          element={<CustomPage title="To-do list" mainPage={ToDo} />}
+        />
+        <Route
+          path="/login"
+          element={<CustomPage title="Logowanie" mainPage={BoxAuth} />}
+        />
+      </Routes>
     </Router>
   );
 }

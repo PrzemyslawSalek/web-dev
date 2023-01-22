@@ -3,10 +3,14 @@ import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.css";
 
 import reportWebVitals from "./reportWebVitals";
+import axiosInterceptor from "./axios.interceptor";
 
 import App from "./containers/App";
 
 import "./index.css";
+
+//Use to define default behavior during requests and responses
+axiosInterceptor();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
