@@ -38,7 +38,6 @@ export default () => {
 
   axios.interceptors.request.use(
     function (config) {
-      config.headers.Authorization = `Bearer ${getCookies().get("access")}`;
       return config;
     },
     function (error) {

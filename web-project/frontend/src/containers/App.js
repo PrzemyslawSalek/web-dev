@@ -4,16 +4,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CustomPage from "./pages/CustomPage";
 import ToDo from "../components/ToDo";
 import BoxAuth from "../components/BoxAuth";
-
-const setPage = (path, main) => (
-  <Route path={path} element={<CustomPage mainPage={main} />} />
-);
+import BoxWallpapersList from "../components/BoxWallpapersList";
 
 export default function () {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<CustomPage mainPage={ToDo} />} />
+        <Route path="/" element={<CustomPage mainPage={BoxWallpapersList} />} />
         <Route
           path="/todo"
           element={<CustomPage title="To-do list" mainPage={ToDo} />}
