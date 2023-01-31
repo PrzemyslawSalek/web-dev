@@ -24,10 +24,7 @@ export default () => {
       const status = err.response?.status || 500;
       switch (status) {
         case 401: {
-          if (
-            window.location.pathname !== "/" &&
-            window.location.pathname !== "/login"
-          ) {
+          if (window.location.pathname !== "/login") {
             window.location.replace("/login");
           }
           return Promise.reject(err);
@@ -38,6 +35,7 @@ export default () => {
 
   axios.interceptors.request.use(
     function (config) {
+      config.headers.Authorization = `Bearer ${getCookies().get("access")}`;
       return config;
     },
     function (error) {

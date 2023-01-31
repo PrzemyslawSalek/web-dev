@@ -5,12 +5,17 @@ import CustomPage from "./pages/CustomPage";
 import ToDo from "../components/ToDo";
 import BoxAuth from "../components/BoxAuth";
 import BoxWallpapersList from "../components/BoxWallpapersList";
+import BoxProfile from "../components/BoxProfile";
 
 export default function () {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<CustomPage mainPage={BoxWallpapersList} />} />
+        <Route
+          path="/profile"
+          element={<CustomPage title="Twój profil" mainPage={BoxProfile} />}
+        />
         <Route
           path="/todo"
           element={<CustomPage title="To-do list" mainPage={ToDo} />}

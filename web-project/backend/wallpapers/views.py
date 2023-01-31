@@ -7,6 +7,7 @@ from .serializers import WallpaperSerializers
 
 class WallpaperView(generics.ListCreateAPIView):
     permission_classes = (AllowAny,)
+    authentication_classes = []
     serializer_class = WallpaperSerializers
 
     def get_queryset(self):
