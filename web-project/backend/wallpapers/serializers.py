@@ -6,4 +6,4 @@ from .models import Wallpaper
 class WallpaperSerializers(serializers.ModelSerializer):
     class Meta:
         model = Wallpaper
-        fields = ['name', 'image', 'user']
+        fields = ['id', 'name', 'image', 'user']
