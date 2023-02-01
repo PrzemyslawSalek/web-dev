@@ -4,11 +4,12 @@ import "./Main.css";
 
 class Main extends Component {
   render() {
+    const { params } = this.props;
     const Box = this.props.mainPage;
 
     return (
       <div className="main">
-        <Box />
+        <Box params={params} />
       </div>
     );
   }

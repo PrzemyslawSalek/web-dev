@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { getCookies } from "../../utils/cookies";
 
@@ -10,7 +11,7 @@ import Main from "./elements/Main";
 import "./CustomPage.css";
 
 export const UserContext = React.createContext();
-export default class CustomPage extends Component {
+class CustomPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,6 +23,8 @@ export default class CustomPage extends Component {
     if (getCookies().get("access") !== undefined) {
       this.fetchUserData();
     }
+
+    console.log(this.props);
   }
 
   fetchUserData = () => {
@@ -34,7 +37,7 @@ export default class CustomPage extends Component {
   };
 
   render() {
-    const { mainPage } = this.props;
+    const { params, mainPage } = this.props;
 
     const user = this.state.user;
     const fetch = this.fetchUserData;
@@ -43,10 +46,16 @@ export default class CustomPage extends Component {
       <div className="custom-page">
         <UserContext.Provider value={{ user, fetch }}>
           <Header />
-          <Main mainPage={mainPage} />
+          <Main mainPage={mainPage} params={params} />
           <Footer />
         </UserContext.Provider>
       </div>
     );
   }
+}
+
+export default function (props) {
+  const navigation = useNavigate();
+
+  return <CustomPage {...props} navigation={navigation} params={useParams()} />;
 }

@@ -19,7 +19,7 @@ class BoxWallpapersList extends Component {
 
   getWallpapers = () => {
     axios
-      .get("/wallpapers/wallpapers/")
+      .get("/wallpapers/")
       .then((res) => this.setState({ wallpapers: res.data }))
       .catch((err) => console.log(err));
   };
