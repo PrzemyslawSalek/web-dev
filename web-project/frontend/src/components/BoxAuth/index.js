@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import { Card, Container } from "reactstrap";
+
 import LoginForm from "./elements/LoginForm";
 import login from "../../media/images/login.png";
 import RegistrationForm from "./elements/RegistrationForm";
+
+import "./BoxAuth.css";
 
 class BoxAuth extends Component {
   constructor(props) {
@@ -19,9 +23,9 @@ class BoxAuth extends Component {
 
   render() {
     return (
-      <main className="container">
+      <Container className="box-auth__wrapper">
         <div className="col-md-8 col-sm-10 mx-auto p-0">
-          <div className="card p-3">
+          <Card className="box-auth">
             <div className="row">
               <div className="col">
                 <img className="img-fluid" src={login}></img>
@@ -32,13 +36,13 @@ class BoxAuth extends Component {
                 />
               </div>
             </div>
-          </div>
+          </Card>
         </div>
         <RegistrationForm
           show={this.state.showRegistrationModal}
           toggle={this.toggleRegistrationModal}
         />
-      </main>
+      </Container>
     );
   }
 }

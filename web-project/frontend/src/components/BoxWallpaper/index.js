@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
+import { Button, Card } from "reactstrap";
 import axios from "axios";
 
 import "./BoxWallpaper.css";
@@ -47,33 +47,46 @@ class BoxWallpaper extends Component {
     return (
       <div className="box-wallpaper">
         <div className="box-wallpaper__name">{wallpaper.name}</div>
-        <div className="box-wallpaper__image-wrapper">
-          <img
-            className="box-wallpaper__image"
-            alt={wallpaper.name}
-            src={wallpaper.image}
-          />
+        <div className="box-wallpaper__body">
+          <div className="box-wallpaper__image-wrapper">
+            <img
+              className="box-wallpaper__image"
+              alt={wallpaper.name}
+              src={wallpaper.image}
+            />
+          </div>
+          <Card className="box-wallpaper__card">
+            <form className="box-wallpaper__form" onSubmit={this.addComment}>
+              <input
+                type="text"
+                className="box-wallpaper__input-comment"
+                placeholder="Komentarz"
+                id="comment"
+                value={this.state.comment}
+                onChange={this.handleChange}
+                required
+              />
+              <Button
+                className="box-wallpaper__button-add-comment"
+                color="warning"
+                type="submit"
+              >
+                Dodaj komentarz
+              </Button>
+            </form>
+            {wallpaper?.comments &&
+              wallpaper?.comments.map((comment, key) => (
+                <div className="box-wallpaper__comment" key={key}>
+                  <Card className="box-wallpaper__card-comment">
+                    <div className="box-wallpaper__card-comment--owner">
+                      {comment.owner}
+                    </div>
+                    <div>{comment.body}</div>
+                  </Card>
+                </div>
+              ))}
+          </Card>
         </div>
-        {wallpaper?.comments &&
-          wallpaper?.comments.map((comment, key) => (
-            <div className="box-wallpaper__comment" key={key}>
-              <div> {comment.owner}</div>
-              <div>{comment.body}</div>
-            </div>
-          ))}
-        <form onSubmit={this.addComment}>
-          <input
-            type="text"
-            placeholder="Komentarz"
-            id="comment"
-            value={this.state.comment}
-            onChange={this.handleChange}
-            required
-          />
-          <Button block color="warning" type="submit">
-            Dodaj komentarz
-          </Button>
-        </form>
       </div>
     );
   }

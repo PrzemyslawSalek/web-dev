@@ -11,6 +11,8 @@ import {
 } from "reactstrap";
 import axios from "axios";
 
+import "./RegistrationForm.css";
+
 class RegistrationForm extends Component {
   constructor(props) {
     super(props);

@@ -1,12 +1,19 @@
 import React, { Component } from "react";
+import { Button } from "reactstrap";
 import axios from "axios";
 
+import "./BoxAddWallpaper.css";
+
 class BoxAddWallpaper extends Component {
-  state = {
-    name: "",
-    description: "",
-    image: null,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      description: "",
+      image: null,
+    };
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -42,12 +49,12 @@ class BoxAddWallpaper extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="box-add-wallpaper">
         <form onSubmit={this.handleSubmit}>
           <p>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Nazwa"
               id="name"
               value={this.state.name}
               onChange={this.handleChange}
@@ -57,7 +64,7 @@ class BoxAddWallpaper extends Component {
           <p>
             <input
               type="text"
-              placeholder="Description"
+              placeholder="Opis"
               id="description"
               value={this.state.description}
               onChange={this.handleChange}
@@ -73,7 +80,9 @@ class BoxAddWallpaper extends Component {
               required
             />
           </p>
-          <input type="submit" />
+          <Button color="warning" type="submit">
+            Prześlij
+          </Button>
         </form>
       </div>
     );

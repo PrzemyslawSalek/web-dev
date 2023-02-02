@@ -42,7 +42,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="box-login">
         <h1>Logowanie</h1>
         <Form>
           <FormGroup>
