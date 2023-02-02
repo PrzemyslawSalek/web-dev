@@ -25,10 +25,12 @@ class BoxProfile extends Component {
         <div className="box-profile__column">
           <Card className="box-profile__card">
             <div className="box-profile__card-title">Twoje tapety</div>
-            {this.props?.user?.user?.wallpapers &&
-              this.props?.user?.user?.wallpapers.map((wallpaper, key) => (
-                <Wallpaper key={key} wallpaper={wallpaper} />
-              ))}
+            <div className="box-profile__card-wallpapers">
+              {this.props?.user?.user?.wallpapers &&
+                this.props?.user?.user?.wallpapers.map((wallpaper, key) => (
+                  <Wallpaper key={key} wallpaper={wallpaper} />
+                ))}
+            </div>
           </Card>
         </div>
       </div>
