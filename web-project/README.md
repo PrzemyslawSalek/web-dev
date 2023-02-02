@@ -1,6 +1,6 @@
 # Wallpapers web application
 
-Głównym założeniem aplikacji jest możliwość przeglądania tapet dodanych przez użytkowników. Aplikacja ma autoryzację opartą o tokeny - można założyć konto, zalogować się i wylogować. 
+Głównym zadaniem aplikacji jest możliwość przeglądania tapet dodanych przez użytkowników. Aplikacja ma autoryzację opartą o tokeny - można założyć konto, zalogować się i wylogować. 
 Zalogowany użytkownik ma dodatkowe funkcje m.in dodawanie tapet i komentarzy. Może także przeglądać swój profil, gdzie znajdują sie jego dane i dodane przez niego tapety.
 
 Administrator ma dostęp do dodatkowego panelu wystawionego na innym porcie, dzięki któremu ma możliwość zarządzania danymi użytkowników przy zachowaniu zasad bezpieczeństwa (m.in hashowanie hasła). 
