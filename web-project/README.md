@@ -49,7 +49,7 @@ Administrator ma dostęp do dodatkowego panelu wystawionego na innym porcie, dzi
 - React (m.in axios, reactstrap)
 - Django (m.in djangorestframework, django-cors-headers, Pillow)
 
-## Uruchamianie
+## Uruchomienie
 - Frontend:
 1. Instalacja Node globalnie
 2. Przejście do katalogu *frontend*
