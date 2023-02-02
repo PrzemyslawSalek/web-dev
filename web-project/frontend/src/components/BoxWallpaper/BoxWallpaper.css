@@ -19,11 +19,6 @@
 }
 
 .box-wallpaper__name {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   color: white;
   align-self: center;
   font-size: 28px;

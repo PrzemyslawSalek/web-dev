@@ -27,7 +27,6 @@ class BoxAddWallpaper extends Component {
     form_data.append("image", this.state.image, this.state.image.name);
     form_data.append("name", this.state.name);
     form_data.append("description", this.state.description);
-    form_data.append("user", "psalek");
 
     axios
       .post("/wallpapers/", form_data, {
