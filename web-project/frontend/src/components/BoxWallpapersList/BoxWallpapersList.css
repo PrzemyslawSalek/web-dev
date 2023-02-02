@@ -3,4 +3,5 @@
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 8px;
+  padding: 0 26px;
 }

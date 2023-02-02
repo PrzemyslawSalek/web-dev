@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 260px;
-  width: 320px;
-  margin: 8px;
+  height: 320px;
+  width: 450px;
+  margin: 12px;
   cursor: pointer;
   background-color: #191616;
 }
@@ -18,8 +18,8 @@
 }
 
 .wallpaper__image {
-  max-height: 240px;
-  max-width: 320px;
+  height: 260px;
+  width: 450px;
   padding: 6px;
 }
 

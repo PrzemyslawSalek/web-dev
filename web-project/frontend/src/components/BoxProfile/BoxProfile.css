@@ -20,6 +20,12 @@
   color: white;
 }
 
+.box-profile__card-wallpapers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .box-profile__card {
   width: 100%;
   height: 100%;
