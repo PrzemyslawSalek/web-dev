@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Wallpaper
+from .models import Wallpaper, Comment
 
 
 class WallpaperAdmin(admin.ModelAdmin):
@@ -8,3 +8,10 @@ class WallpaperAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Wallpaper, WallpaperAdmin)
+
+
+class CommentAdmin(admin.ModelAdmin):
+    readonly_fields = ('id',)
+
+
+admin.site.register(Comment, CommentAdmin)

@@ -1,12 +1,20 @@
 from rest_framework import serializers
 
-from .models import Wallpaper
+from .models import Wallpaper, Comment
 
 
-class WallpaperSerializers(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
-    user_id = serializers.ReadOnlyField(source='user.id')
+class CommentSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'body', 'owner', 'wallpaper']
+
+
+class WallpaperSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Wallpaper
-        fields = ['id', 'name', 'image', 'description', 'user', 'user_id']
+        fields = ['id', 'name', 'image', 'description', 'owner', 'comments']

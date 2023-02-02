@@ -1,45 +1,36 @@
-from django.contrib.auth.models import User
-from django.http.response import Http404
-from django.http.response import JsonResponse
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from .models import Wallpaper
-from .serializers import WallpaperSerializers
+from .models import Wallpaper, Comment
+from .serializers import WallpaperSerializer, CommentSerializer
 
 
-class WallpaperView(APIView):
-    permission_classes = (AllowAny,)
-    authentication_classes = []
-    serializer_class = WallpaperSerializers
+class WallpaperList(generics.ListCreateAPIView):
+    queryset = Wallpaper.objects.all()
+    serializer_class = WallpaperSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
-    def post(self, request):
-        data = request.data
-        try:
-            user = User.objects.get(username=request.data.user)
-        except Exception as e:
-            user = User.objects.get(username='psalek')
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
-        serializer = WallpaperSerializers(data=data)
 
-        if serializer.is_valid():
-            serializer.save(user=user)
-            return JsonResponse("Wallpaper Added Successfully", safe=False)
-        return JsonResponse("Failed to Add Wallpaper", safe=False)
+class WallpaperDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Wallpaper.objects.all()
+    serializer_class = WallpaperSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
-    def get_wallpaper(self, pk):
-        try:
-            wallpaper = Wallpaper.objects.get(id=pk)
-            return wallpaper
-        except Wallpaper.DoesNotExist:
-            raise Http404
 
-    def get(self, request, pk=None):
-        if pk:
-            data = self.get_wallpaper(pk)
-            serializer = WallpaperSerializers(data)
-        else:
-            data = Wallpaper.objects.all()
-            serializer = WallpaperSerializers(data, many=True)
-        return Response(serializer.data)
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]

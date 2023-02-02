@@ -4,6 +4,8 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
+from wallpapers.serializers import CommentSerializer, WallpaperSerializer
+
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
@@ -54,6 +56,9 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class UserSerializers(serializers.ModelSerializer):
+    comments = CommentSerializer(many=True, read_only=True)
+    wallpapers = WallpaperSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ["username", "email", "first_name", "last_name"]
+        fields = ["username", "email", "first_name", "last_name", 'wallpapers', 'comments']
