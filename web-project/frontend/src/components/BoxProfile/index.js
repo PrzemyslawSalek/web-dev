@@ -4,6 +4,7 @@ import { Card } from "reactstrap";
 import ProfileInfo from "./elements/ProfileInfo";
 
 import "./BoxProfile.css";
+import BoxAddWallpaper from "../BoxAddWallpaper";
 
 class BoxProfile extends Component {
   render() {
@@ -12,7 +13,9 @@ class BoxProfile extends Component {
         <Card className="box-profile__card--profile-info">
           <ProfileInfo />
         </Card>
-        <Card className="box-profile__card--other"></Card>
+        <Card className="box-profile__card--other">
+          <BoxAddWallpaper />
+        </Card>
       </div>
     );
   }
