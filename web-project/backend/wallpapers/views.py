@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http.response import Http404
 from django.http.response import JsonResponse
 from rest_framework.permissions import AllowAny
@@ -15,12 +16,17 @@ class WallpaperView(APIView):
 
     def post(self, request):
         data = request.data
+        try:
+            user = User.objects.get(username=request.data.user)
+        except Exception as e:
+            user = User.objects.get(username='psalek')
+
         serializer = WallpaperSerializers(data=data)
 
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=user)
             return JsonResponse("Wallpaper Added Successfully", safe=False)
-        return JsonResponse("Failed to Add Student", safe=False)
+        return JsonResponse("Failed to Add Wallpaper", safe=False)
 
     def get_wallpaper(self, pk):
         try:
